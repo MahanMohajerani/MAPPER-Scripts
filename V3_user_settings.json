@@ -1,0 +1,259 @@
+{
+  "general": {
+    "BASE_DIR": "",
+    "EEG_DIR": "",
+    "CLEANED_DIR": "",
+    "REPORTS_DIR": "",
+    "MCMI_CSV": "",
+    "SUBJECT_ID_COLUMN": "subject_id",
+    "EEG_FILE_EXTENSION": ".edf"
+  },
+  "stages": {
+    "1": {
+      "resume": true,
+      "force_rerun": false,
+      "MIN_RECORDING_SECONDS": 30.0,
+      "RESAMPLE_SFREQ": null,
+      "DO_BANDPASS": true,
+      "BANDPASS_LOW": 0.5,
+      "BANDPASS_HIGH": 30.0,
+      "DO_NOTCH": true,
+      "NOTCH_FREQ": 50.0,
+      "DO_AVERAGE_REFERENCE": true,
+      "BAD_CHANNEL_VAR_LOW": 1e-10,
+      "BAD_CHANNEL_VAR_HIGH_MULT": 5,
+      "MAX_BAD_CHANNELS": 3,
+      "DO_INTERPOLATE_BAD_CHANNELS": true,
+      "DO_ICA": true,
+      "DO_ECG_REMOVAL": true,
+      "ICA_EOG_THRESHOLD": 3.0,
+      "CPU_USAGE_PERCENT": 75
+    },
+    "2": {
+      "resume": true,
+      "force_rerun": false,
+      "CACHE_DURATIONS": [
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0
+      ],
+      "REFERENCE_DURATION": 2.0,
+      "ARTIFACT_REJECTION": "hybrid",
+      "AUTOREJECT_TIMEOUT_SECONDS": 600,
+      "EPOCH_FLAT_THRESHOLD": 1e-06,
+      "VARIANCE_REJECT_Z": 3.5,
+      "MIN_RECORDING_SECONDS": 30.0,
+      "CPU_USAGE_PERCENT": 75
+    },
+    "3": {
+      "resume": true,
+      "FEATURE_INCLUSION_COLUMN": "minimum_include",
+      "HIGH_EPOCH_REMOVAL_PERCENT": 50.0,
+      "VERY_HIGH_EPOCH_REMOVAL_PERCENT": 75.0,
+      "LOW_CLEAN_SECONDS": 60.0,
+      "NEAR_MINIMUM_CLEAN_SECONDS": 120.0
+    },
+    "4": {
+      "resume": true,
+      "force_rerun": false,
+      "FEATURE_INCLUSION_COLUMN": "minimum_include",
+      "FEATURE_FAMILIES": {
+        "BAND_POWER": true,
+        "MICROSTATES": true,
+        "CONNECTIVITY": true,
+        "SPECTRAL_PARAMETERIZATION": true,
+        "HJORTH": true,
+        "ENTROPY": true,
+        "ASYMMETRY": true,
+        "KURTOSIS": true
+      },
+      "CACHE_DURATIONS": [
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0
+      ],
+      "REFERENCE_DURATION": 2.0,
+      "MAX_FEATURE_WORKERS": 12,
+      "CONNECTIVITY_DENSITIES": [
+        0.1,
+        0.2,
+        0.3
+      ],
+      "CONNECTIVITY_USE_ABSOLUTE_WEIGHTS": true,
+      "USE_GRAPH_METRICS": true,
+      "ENTROPY_MAX_SAMPLES": 20000,
+      "SAMPLE_ENTROPY_MAX_SAMPLES": 8000,
+      "HIGUCHI_KMAX": 8,
+      "USE_ADAPTIVE_WELCH": false,
+      "SPECPARAM_FREQ_RANGE": [
+        1.0,
+        30.0
+      ],
+      "SPECPARAM_PEAK_WIDTHS": [
+        1.0,
+        8.0
+      ],
+      "SPECPARAM_MAX_PEAKS": 6,
+      "SPECPARAM_MIN_PEAK_HEIGHT": 0.05,
+      "SPECPARAM_PEAK_THRESHOLD": 2.0,
+      "SPECPARAM_APERIODIC_MODE": "fixed",
+      "MICROSTATE_N_STATES": 4,
+      "MICROSTATE_MAX_PEAKS": 2000,
+      "BANDS": {
+        "delta": [
+          0.5,
+          4.0
+        ],
+        "theta": [
+          4.0,
+          8.0
+        ],
+        "alpha": [
+          8.0,
+          13.0
+        ],
+        "beta": [
+          13.0,
+          30.0
+        ]
+      },
+      "MAX_FREQ": 30.0
+    },
+    "5": {
+      "resume": true,
+      "OUTER_N_FOLDS": 5,
+      "OUTER_FOLD_SEED": 27,
+      "OUTER_FOLD_CANDIDATE_ASSIGNMENTS": 250,
+      "LOCK_OUTER_FOLDS": true,
+      "BALANCE_BR60": true,
+      "BALANCE_BR75": true,
+      "BALANCE_ORDINAL": true,
+      "BALANCE_CONTINUOUS_MOMENTS": true,
+      "CONTINUOUS_BALANCE_WEIGHT": 0.25
+    },
+    "6": {
+      "resume": true,
+      "OUTER_N_FOLDS": 5,
+      "INNER_N_FOLDS": 5,
+      "INNER_N_REPEATS": 20,
+      "INNER_BASE_SEED": 27,
+      "REGRESSION_STRATIFICATION_BINS": 5,
+      "CONFIG_SELECTION_RULE": "top_k",
+      "SELECTION_TIE_TOLERANCE": 1e-06,
+      "TOP_K_CONFIGS": 20,
+      "RUN_BR60": true,
+      "RUN_BR75": true,
+      "RUN_ORDINAL": true,
+      "RUN_CONTINUOUS": true,
+      "ORDINAL_SCHEME": "4class_original",
+      "MCMI_SCALE_ORDER": [
+        "BR_1",
+        "BR_2A",
+        "BR_2B",
+        "BR_3",
+        "BR_4A",
+        "BR_4B",
+        "BR_5",
+        "BR_6A",
+        "BR_6B",
+        "BR_7",
+        "BR_8A",
+        "BR_8B",
+        "BR_S",
+        "BR_C",
+        "BR_P"
+      ],
+      "RUN_ALL_255_FAMILY_COMBINATIONS": true,
+      "EPOCH_DURATION_MODE": "all",
+      "BINARY_MODEL_NAME": "linear_svm_svc",
+      "LOGISTIC_C": 1.0,
+      "RIDGE_ALPHA": 1.0,
+      "CLASS_WEIGHT": "balanced",
+      "MAX_ITER": 1000,
+      "MAX_CLASSIFIER_WORKERS": 12,
+      "NUMERICAL_THREADS_PER_WORKER": 1,
+      "CLASSIFIER_PARALLEL_BACKEND": "loky",
+      "CPU_USAGE_PERCENT": 75,
+      "BRACKET_CUTOFF_1": 60,
+      "BRACKET_CUTOFF_2": 75,
+      "BRACKET_CUTOFF_3": 85
+    },
+    "7": {
+      "resume": true,
+      "MAKE_PNG": true,
+      "MAKE_PDF": true,
+      "REPORT_TOP_CONFIGS": 20,
+      "TOP_K_PLOT_VALUES": [
+        5,
+        10,
+        20,
+        50
+      ],
+      "INCLUDE_FOLD_BALANCE": true,
+      "INCLUDE_SELECTION_STABILITY": true
+    },
+    "8": {
+      "resume": true,
+      "ORDINAL_SCHEME": "4class_original",
+      "MAKE_PNG": true,
+      "MAKE_PDF": true,
+      "N_BOOTSTRAPS": 1000,
+      "RUN_BOOTSTRAP": true,
+      "PERMUTATION_METHOD": "none",
+      "N_PERMUTATIONS": 100,
+      "PERMUTATION_K_VALUES": [
+        5,
+        20
+      ],
+      "MULTIPLICITY_METHOD": "fdr_bh",
+      "PERMUTE_MCMI_ROWS_TOGETHER": true
+    }
+  },
+  "inputs": {
+    "2": {
+      "mode": "auto",
+      "path": ""
+    },
+    "3": {
+      "mode": "auto",
+      "path": ""
+    },
+    "4": {
+      "mode": "auto",
+      "path": ""
+    },
+    "5": {
+      "mode": "auto",
+      "path": ""
+    },
+    "6": {
+      "mode": "auto",
+      "path": ""
+    },
+    "7": {
+      "mode": "auto",
+      "path": ""
+    },
+    "8": {
+      "mode": "auto",
+      "path": ""
+    }
+  },
+  "gui": {
+    "selected_stages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "window_geometry": "1536x793+-1018+30"
+  }
+}

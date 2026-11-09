@@ -1,6 +1,6 @@
 # MAPPER-Scripts
 
-Analysis scripts for **MAPPER** (Multidimensional Analysis of Personality Prediction from Electroencephalographic Representations), accompanying the MAPPER EEG–MCMI-IV manuscript.
+Analysis scripts for MAPPER (Multidimensional Analysis of Personality Prediction from Electroencephalographic Representations), accompanying the MAPPER EEG–MCMI-IV manuscript.
 
 ## Contents
 

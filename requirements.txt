@@ -1,0 +1,13 @@
+# Direct third-party imports used in the MAPPER v1.0 (Python 3.11.14).
+# Exact versions are supplied for provenance.
+autoreject==0.4.3
+fooof==1.1.1
+joblib==1.5.3
+matplotlib==3.10.8
+mne==1.11.0
+numpy==2.4.2
+pandas==3.0.2
+scikit-learn==1.8.0
+scipy==1.17.1
+specparam==2.0.0rc6
+threadpoolctl==3.6.0
