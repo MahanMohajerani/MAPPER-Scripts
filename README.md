@@ -2,6 +2,8 @@
 
 Analysis scripts for MAPPER (Multidimensional Analysis of Personality Prediction from Electroencephalographic Representations), accompanying the MAPPER EEG–MCMI-IV manuscript.
 
+**Versioning note:** The `V3` suffix in script filenames refers to the internal development version used during the MAPPER project. It is retained for consistency with the original codebase. The public release version is `v1.0`.
+
 ## Contents
 
 The pipeline is organized into eight processing/analysis stages and a GUI that can be used to navigate the pipeline:
